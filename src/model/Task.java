@@ -1,15 +1,17 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import java.util.Objects;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Task {
-    private String taskName;
+    private final String taskName;
     private String priority;
-    private boolean isFinished;
+    private boolean finished;
 
     public Task(String taskName, int priorityIndex) throws Throwable {
         this.taskName = taskName;
-        this.isFinished = false;
+        this.finished = false;
         this.setPriority(priorityIndex);
     }
 
@@ -22,8 +24,8 @@ public class Task {
         }
     }
 
-    public void setFinished() {
-        isFinished = true;
+    public void setIsFinished() {
+        finished = true;
     }
 
     public String getTaskName() {
@@ -35,7 +37,7 @@ public class Task {
     }
 
     public boolean isFinished() {
-        return isFinished;
+        return finished;
     }
 
     @Override
@@ -49,11 +51,11 @@ public class Task {
         }
 
         Task task = (Task) obj;
-        return isFinished == task.isFinished() && taskName.equalsIgnoreCase(task.getTaskName());
+        return finished == task.isFinished() && taskName.equalsIgnoreCase(task.getTaskName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskName.toLowerCase(), isFinished);
+        return Objects.hash(taskName.toLowerCase(), finished);
     }
 }

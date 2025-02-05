@@ -1,0 +1,5 @@
+[
+  { "taskName": "make a dinner", "priority": "Medium", "finished": true },
+  { "taskName": "go to the meeting", "priority": "High", "finished": false },
+  { "taskName": "find a job", "priority": "High", "finished": false }
+]

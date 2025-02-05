@@ -1,4 +1,5 @@
 import model.Task;
+import service.FileManager;
 import service.TaskManager;
 
 import java.util.Scanner;
@@ -69,6 +70,9 @@ public class Main {
                         exit = true;
                         System.out.println("Exit...");
                     }
+                    case 6 -> {
+                        FileManager.write(manager.getTaskList());
+                    }
                     default -> {
                         System.out.println("Incorrect option number. Try again");
                     }
@@ -86,7 +90,9 @@ public class Main {
                 "2. Show tasks\n" +
                 "3. Delete task\n" +
                 "4. Mark task as completed\n" +
-                "5. Exit\n\n" +
+                "5. Exit\n" +
+                "6. Save tasks\n\n" +
+
                 "Choose the option: ");
     }
 }
