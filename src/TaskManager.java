@@ -4,8 +4,17 @@ public class TaskManager {
     private final ArrayList<Task> taskList = new ArrayList<>();
 
     public void addTask(Task task) {
-        // можно добавить проверку, что такая задача уже существует
+        for (Task taskInList : taskList) {
+            String oldName = taskInList.getTaskName();
+            String newName = task.getTaskName();
+            if (newName.equalsIgnoreCase(oldName)) {
+                System.out.println("You already have a task \"" + oldName + "\".");
+                return;
+            }
+        }
+
         taskList.add(task);
+        System.out.println("Task \"" + task.getTaskName() + "\" successfully added.");
     }
 
     public void removeTask(String taskName) {

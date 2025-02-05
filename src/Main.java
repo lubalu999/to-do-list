@@ -26,7 +26,6 @@ public class Main {
                             try {
                                 Task newTask = new Task(name, priority);
                                 manager.addTask(newTask);
-                                System.out.println("Task \"" + name + "\" successfully added.");
                             } catch (IllegalArgumentException exception) {
                                 System.out.println(exception.getMessage());
                             }
