@@ -13,12 +13,12 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public void setPriority(int priorityIndex) throws Throwable {
+    public void setPriority(int priorityIndex) {
         switch (priorityIndex) {
             case 1 -> this.priority = "High";
             case 2 -> this.priority = "Medium";
             case 3 -> this.priority = "Low";
-            default -> throw new Throwable("Wrong priority index, try again.");
+            default -> throw new IllegalArgumentException("Wrong priority index, try again.");
         }
     }
 

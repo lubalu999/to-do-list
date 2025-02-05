@@ -4,32 +4,46 @@ public class Main {
     public static void main(String[] args) throws Throwable {
         Scanner scanner = new Scanner(System.in);
         TaskManager manager = new TaskManager();
+        boolean exit = false;
 
-        while (true) {
+        while (!exit) {
             printMessage();
 
             if (scanner.hasNextInt()) {
                 int action = scanner.nextInt();
+                scanner.nextLine();
 
                 switch (action) {
                     case 1 -> {
-                        System.out.println("Enter task name - ");
-                        String name = scanner.next();
+                        System.out.print("Enter task name: ");
+                        String name = scanner.nextLine();
 
-                        System.out.println("Enter task priority (1 - High, 2 - Medium, 3 - Low) - ");
-                        int priority = scanner.nextInt();
+                        System.out.print("Enter task priority (1 - High, 2 - Medium, 3 - Low): ");
+                        if (scanner.hasNextInt()) {
+                            int priority = scanner.nextInt();
+                            scanner.nextLine();
 
-                        Task newTask = new Task(name, priority);
-                        manager.addTask(newTask);
+                            try {
+                                Task newTask = new Task(name, priority);
+                                manager.addTask(newTask);
+                                System.out.println("Task \"" + name + "\" successfully added.");
+                            } catch (IllegalArgumentException exception) {
+                                System.out.println(exception.getMessage());
+                            }
+                        } else {
+                            System.out.println("Please, choose the priority from 1 (High) to 3 (Low).");
+                        }
                     }
                     case 2 -> {
                         manager.printAllTasks();
                     }
                     case 3 -> {
-                        System.out.print("Enter task name or task number - ");
+                        System.out.print("Enter task name or task number: ");
 
                         if (scanner.hasNextInt()) {
                             int index = scanner.nextInt();
+                            scanner.nextLine();
+
                             manager.removeTask(index);
                         } else {
                             String name = scanner.nextLine();
@@ -37,10 +51,12 @@ public class Main {
                         }
                     }
                     case 4 -> {
-                        System.out.print("Enter task name or task number - ");
+                        System.out.print("Enter task name or task number: ");
 
                         if (scanner.hasNextInt()) {
                             int index = scanner.nextInt();
+                            scanner.nextLine();
+
                             manager.makeFinished(index);
                         } else {
                             String name = scanner.nextLine();
@@ -48,13 +64,16 @@ public class Main {
                         }
                     }
                     case 5 -> {
+                        exit = true;
                         System.out.println("Exit...");
-                        break;
                     }
                     default -> {
                         System.out.println("Incorrect option number. Try again");
                     }
                 }
+            } else {
+                scanner.nextLine();
+                System.out.println("Wrong option number. Use from 1 to 5.");
             }
         }
     }
