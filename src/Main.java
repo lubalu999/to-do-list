@@ -1,3 +1,6 @@
+import model.Task;
+import service.TaskManager;
+
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +10,7 @@ public class Main {
         boolean exit = false;
 
         while (!exit) {
-            printMessage();
+            printMenu();
 
             if (scanner.hasNextInt()) {
                 int action = scanner.nextInt();
@@ -77,7 +80,7 @@ public class Main {
         }
     }
 
-    public static void printMessage() {
+    public static void printMenu() {
         System.out.print("\n=== Task Manager ===\n" +
                 "1. Add task\n" +
                 "2. Show tasks\n" +

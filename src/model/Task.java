@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Objects;
+
 public class Task {
     private String taskName;
     private String priority;
@@ -7,10 +11,6 @@ public class Task {
         this.taskName = taskName;
         this.isFinished = false;
         this.setPriority(priorityIndex);
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
     }
 
     public void setPriority(int priorityIndex) {
@@ -36,5 +36,24 @@ public class Task {
 
     public boolean isFinished() {
         return isFinished;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Task task = (Task) obj;
+        return isFinished == task.isFinished() && taskName.equalsIgnoreCase(task.getTaskName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskName.toLowerCase(), isFinished);
     }
 }

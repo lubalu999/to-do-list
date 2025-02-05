@@ -1,20 +1,19 @@
+package service;
+
+import model.Task;
+
 import java.util.ArrayList;
 
 public class TaskManager {
     private final ArrayList<Task> taskList = new ArrayList<>();
 
     public void addTask(Task task) {
-        for (Task taskInList : taskList) {
-            String oldName = taskInList.getTaskName();
-            String newName = task.getTaskName();
-            if (newName.equalsIgnoreCase(oldName)) {
-                System.out.println("You already have a task \"" + oldName + "\".");
-                return;
-            }
+        if (taskList.contains(task)) {
+            System.out.println("You already have a task \"" + task.getTaskName() + "\".");
+        } else {
+            taskList.add(task);
+            System.out.println("model.Task \"" + task.getTaskName() + "\" successfully added.");
         }
-
-        taskList.add(task);
-        System.out.println("Task \"" + task.getTaskName() + "\" successfully added.");
     }
 
     public void removeTask(String taskName) {
@@ -26,9 +25,9 @@ public class TaskManager {
         boolean isRemoved = taskList.removeIf(task -> taskName.equalsIgnoreCase(task.getTaskName()));
 
         if (isRemoved) {
-            System.out.println("Task " + taskName + " successfully removed.");
+            System.out.println("model.Task " + taskName + " successfully removed.");
         } else {
-            System.out.println("Task not found. Try again.");
+            System.out.println("model.Task not found. Try again.");
         }
     }
 
@@ -42,7 +41,7 @@ public class TaskManager {
             String taskName = taskList.get(taskIndex - 1).getTaskName();
             taskList.remove(taskIndex - 1);
 
-            System.out.println("Task \"" + taskName + "\" successfully removed.");
+            System.out.println("model.Task \"" + taskName + "\" successfully removed.");
         } else {
             System.out.println("Invalid index. Use the index from task list.");
         }
@@ -52,7 +51,7 @@ public class TaskManager {
         for (Task task : taskList) {
             if (taskName.equalsIgnoreCase(task.getTaskName())) {
                 task.setFinished();
-                System.out.println("Task \"" + task.getTaskName() + "\" successfully completed.");
+                System.out.println("model.Task \"" + task.getTaskName() + "\" successfully completed.");
                 return;
             }
         }
@@ -67,7 +66,7 @@ public class TaskManager {
             Task task = taskList.get(taskIndex - 1);
             task.setFinished();
 
-            System.out.println("Task \"" + task.getTaskName() + "\" successfully completed.");
+            System.out.println("model.Task \"" + task.getTaskName() + "\" successfully completed.");
         } else {
             System.out.println("Invalid index. Use the index from task list.");
         }
