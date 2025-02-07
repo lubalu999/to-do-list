@@ -10,6 +10,18 @@ public class Main {
         TaskManager manager = new TaskManager();
         boolean exit = false;
 
+        System.out.print("Choose 1 - create new task list, 2 - read task list from the file: ");
+        if (scanner.hasNextInt()) {
+            int action = scanner.nextInt();
+            scanner.nextLine();
+
+            if (action == 2) {
+                manager.setTaskList(FileManager.read());
+            }
+        } else {
+            throw new IllegalArgumentException();
+        }
+
         while (!exit) {
             printMenu();
 

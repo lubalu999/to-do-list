@@ -5,27 +5,43 @@ import java.util.Objects;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Task {
-    private final String taskName;
-    private String priority;
+    private String taskName;
+    private Priority priority;
     private boolean finished;
+
+    public Task(String taskName, Priority priority, boolean finished) {
+        this.taskName = taskName;
+        this.priority = priority;
+        this.finished = finished;
+    }
 
     public Task(String taskName, int priorityIndex) throws Throwable {
         this.taskName = taskName;
+        this.setPriorityIndex(priorityIndex);
         this.finished = false;
-        this.setPriority(priorityIndex);
     }
 
-    public void setPriority(int priorityIndex) {
+    public Task() {}
+
+    public void setPriorityIndex(int priorityIndex) {
         switch (priorityIndex) {
-            case 1 -> this.priority = "High";
-            case 2 -> this.priority = "Medium";
-            case 3 -> this.priority = "Low";
+            case 1 -> this.priority = Priority.HIGH;
+            case 2 -> this.priority = Priority.MEDIUM;
+            case 3 -> this.priority = Priority.LOW;
             default -> throw new IllegalArgumentException("Wrong priority index, try again.");
         }
     }
 
-    public void setIsFinished() {
-        finished = true;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     public String getTaskName() {
@@ -33,7 +49,7 @@ public class Task {
     }
 
     public String getPriority() {
-        return priority;
+        return priority.getValue();
     }
 
     public boolean isFinished() {
