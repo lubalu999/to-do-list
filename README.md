@@ -6,22 +6,22 @@ A Java console application for managing a To-Do List. It allows users to add, vi
 
 ## Features
 
-Add a new task with priority (High, Medium, Low).
+- Add a new task with priority (High, Medium, Low).
 
-View the task list.
+- View the task list.
 
-Delete a task by name or number.
+- Delete a task by name or number.
 
-Mark a task as completed.
+- Mark a task as completed.
 
-Save the task list to a file and load it on application startup.
+- Save the task list to a file and load it on application startup.
 
 ## Build and Run
 
 ### Clone the repository:
 ```
 git clone <repository-link>
-cd task-manager
+cd to-do-list
 ```
 ### Compile and run the application:
 ```
